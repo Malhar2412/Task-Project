@@ -1,0 +1,23 @@
+<!-- templates/tasks/task_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+    <a href="{% url 'task-create' %}">Add New Task</a>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> - {{ task.description }} - Due: {{ task.due_date }} - 
+                {% if task.status %}Completed{% else %}Pending{% endif %}
+                <a href="{% url 'task-detail' task.id %}">Edit</a> |
+                <a href="{% url 'task-delete' task.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
